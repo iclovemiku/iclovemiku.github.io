@@ -1,0 +1,30 @@
+[
+
+
+{
+"title": "高斯混合模型详解",
+"url": "/2023/03/28/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/",
+"date": "2023-03-28",
+"keywords": ["notes"],
+"summary": "高斯混合模型\n\n当我们面对一个复杂的数据集时，我们可能需要使用一种能够描述这些数据集中不同分布的模型。高斯混合模型（Gaussian Mixture Model，GMM）就是一种流行的用于建模多个高斯分布混合的概率模型。在本文中，我们..."
+}, 
+
+
+{
+"title": "论文笔记",
+"url": "/2023/03/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/",
+"date": "2023-03-24",
+"keywords": ["notes"],
+"summary": "论文笔记\n\n题目:\n\nAge-Invariant Training for End-to-End Child Speech Recognition using Adversarial Multi-Task Learning\n\n论文主要..."
+}, 
+
+
+{
+"title": "Hello world!",
+"url": "/2018/08/28/Hello-world!/",
+"date": "2018-08-28",
+"keywords": ["hello","diary"],
+"summary": "Hello there!\n\nThis is my first blog on my blog site.\n\nThat’s all.\n\ndef print_hi(name):\n   print(\"Hi, \" + name)\nprint_..."
+}
+
+]

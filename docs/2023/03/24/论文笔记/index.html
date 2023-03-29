@@ -59,7 +59,7 @@ Yet no award for you……
     <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
 
-    <title>mikufans | 摸鱼小能手</title>
+    <title>论文笔记 | 摸鱼小能手</title>
 
     <!--live2d function-->
     <script src="/assets/live2dw/lib/L2Dwidget.min.js"></script>
@@ -79,7 +79,7 @@ Yet no award for you……
     <meta name="keywords"
           content="mikufans">
     <meta name="description"
-          content="在读研究生,研究摸鱼,摸鱼,摸鱼.">
+          content="论文笔记">
     <meta name="baidu-site-verification" content="fjE6fa4d3J"/>
     <meta name="author" content="mikufans">
 
@@ -132,7 +132,7 @@ Yet no award for you……
 <div class="body_container">
     <div id="header">
         <div class="site-name">
-            <h1 class="hidden">mikufans</h1>
+            <h1 class="hidden">论文笔记</h1>
             <a id="logo" href="/.">mikufans</a>
             <p class="description">摸鱼小能手，幸会。</p>
         </div>
@@ -170,175 +170,147 @@ Yet no award for you……
     <div id="layout" class="pure-g">
         <div class="pure-u-1 pure-u-md-3-4">
             <div class="content_container">
-                <!--valine comment function-->
-<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+                <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-
-
-<div class="post">
-
-    <h2 class="post-title">
-        <a href="/2023/03/28/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">论文笔记</h1>
+        <p class="post-meta">
+            <time datetime="2023-03-24T00:00:00+08:00" itemprop="datePublished">
+                <i class="icon-post-date">Mar 24, 2023</i>
+            </time>
+             |
+            <span class="post-category">
+            <i class="icon-post-category">
             
-            高斯混合模型详解
+                <a href="/category/#笔记">笔记</a>
             
-        </a>
-    </h2>
-
-    <div class="post-meta">
-        <span>
-        <i class="icon-post-date"> 2023年03月28日
-
-        </i>
-            <!-- 显示每篇博客阅读量, id 将作为查询条件 -->
-                <span id=/2023/03/28/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/ class="leancloud-visitors" data-flag-title=高斯混合模型详解>
-                    <span class="post-meta-divider">|</span>
-                    <span class="post-meta-item-text">阅读量 </span>
-                    <span class="leancloud-visitors-count"></span>
-                </span>
-                &#x1F601
+            </i>
+        </span>   |
+            <span class="post-tag">
+            <i class="icon-post-tag">
+            
+                <a href="/tags/#notes">notes</a>
+            
+            </i>
         </span>
+
+
+            <!-- 阅读量统计， id 将作为查询条件 -->
+            <span id=/2023/03/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/ class="leancloud-visitors" data-flag-title=论文笔记>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-text">阅读量 </span>
+                <span class="leancloud-visitors-count"></span>
+            </span>
+        </p>
+
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+        <h1 id="论文笔记">论文笔记</h1>
+
+<h3 id="题目">题目:</h3>
+
+<h3 id="age-invariant-training-for-end-to-end-child-speech-recognition-using-adversarial-multi-task-learning">Age-Invariant Training for End-to-End Child Speech Recognition using Adversarial Multi-Task Learning</h3>
+
+<h3 id="论文主要研究目的">论文主要研究目的:</h3>
+
+<p>1.我们提出了一个基于对抗性多任务学习的端到端语音识别系统声学模型的年龄不变训练框架。此外，我们还<strong>使用年龄信息来区分儿童和成人领域，从而迫使声学模型学习年龄不变特征.</strong></p>
+
+<p>2.我们进一步表明，使用对抗性多任务学习不一定被视为传统特征空间适应方法的替代品，而应将两者一起使用以获得最佳性能。</p>
+
+<h3 id="模型特征">模型特征:</h3>
+
+<p><img src="/Users/haoxu/Desktop/截屏2022-10-30 11.24.40.png" alt="" /></p>
+
+<p>1.首先确定的是,这是一个声学模型,不是平时所说的语言模型.</p>
+
+<p>2.在同时训练儿童和成人语音的同时，同时训练了一个鉴别模型，以根据声学模型最后一层的特征来估计说话者的年龄。</p>
+
+<p>3.定义了一个对抗性损失，这迫使声学模型的特征提取只提取年龄不变特征。</p>
+
+<p>4.在这项工作中,使用一个简单的基于CTC的时间延迟神经网络工作（TDNN），带有字母（字素）作为目标令牌。</p>
+
+<h3 id="implementation-details">Implementation details</h3>
+
+<p>Mel Spectrogram Features:</p>
+
+<p>从音频中提取梅尔谱图特征，使用64个滤波器组。然后使用每个单独的特征通道和话语的平均值和方差对特征进行归一化。在训练过程中，我们使用SpecAugment[32]频率和时间掩蔽增强数据。对于每个语音，我们应用两个频率和时间掩模，大小为6个特征通道，分别为时间步长。
+对于基于f0的频率归一化[15]，我们提取kaldi-pitch-features[33]。除了每一帧的音高，这些还提供了一种可能性，即该帧是否包含语音。我们通过这个发声概率来衡量每一帧的音高，从而计算出每一个发音的平均值f0。在计算Mel-filterbank特征之前，我们像[15]一样对语音频谱进行扭曲。</p>
+
+<p>Enocder network:</p>
+
+<p>对于编码器网络，我们使用10层TDNN。每个层的内核大小为11，膨胀为1，有512个内核。</p>
+
+<p>Discriminator network:</p>
+
+<p>分辨器网络由一个核大小为11的1-D卷积、1的扩张和3的步幅组成，其次是在时间维度上的平均池和两个64个神经元的完全连接层。输出通过sigmoid映射到0到1之间的值。</p>
+
+<p>ASR Decoder Network:</p>
+
+<p>asr译码器网络只是一个1维卷积层，其内核大小为1，后面是softmax。由于我们不使用语言模型，它的输出使用贪婪的CTC解码。除输出层外，所有网络中的每一层都跟随一个批归一化[34]和一个ReLU非线性。我们使用PyTorch[35]实现所有模型。</p>
+
+<h3 id="题目domain-adversarial-training-of-neural-networks">题目:Domain-Adversarial Training of Neural Networks</h3>
+
+<h3 id="目的">目的:</h3>
+
+<p>我们为领域适应引入了一种新的表示学习方法，其中培训和测试时间的数据来自类似但不同的分布。一个重要的例子是在合成或半合成图像上训练图像分类器，这些图像可能大量并完全标记，但不可避免地具有与真实图像不同的分布.另一个例子是书面评论中的情绪分析，其中人们可能为一种类型的产品（例如电影）的评论标记了数据，同时需要对其他产品（例如书籍）的评论进行分类。</p>
+
+<h3 id="实现方法">实现方法:</h3>
+
+<p>我们表明，这种适应行为几乎可以在任何前馈模型中实现，方法是用很少的标准层和新的梯度反转层来增强它.</p>
+
+<p>我们的目标是将域适应嵌入到学习表示过程中，以便最终的分类决策基于对域变化具有歧视性且不变性的特征，即在源域和目标域中具有相同或非常相似的分布。</p>
+
+<p><img src="/Users/haoxu/Desktop/截屏2022-10-31 22.19.21.png" alt="截屏2022-10-31 22.19.21" /></p>
 
     </div>
 
-    <div class="post-content">高斯混合模型
-
-当我们面对一个复杂的数据集时，我们可能需要使用一种能够描述这些数据集中不同分布的模型。高斯混合模型（Gaussian Mixture Model，GMM）就是一种流行的用于建模多个高斯分布混合的概率模型。在本文中，我们将学习高斯混合模型的原理、如何使用 EM 算法进行参数估计，以及如何使用 Pyt...</div>
-
-    <p class="readmore"><a href="/2023/03/28/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/">阅读更多</a></p>
-
-</div>
-
-<div class="post">
-
-    <h2 class="post-title">
-        <a href="/2023/03/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
-            
-            论文笔记
-            
+    <div id="donate" >
+        <a href="/donate/" style="text-decoration: none" title="点击直达打赏页面～" >
+            <button>客官~对小店满意的话，<mark>赏个铜板</mark>再走啊🐼</button>
         </a>
-    </h2>
-
-    <div class="post-meta">
-        <span>
-        <i class="icon-post-date"> 2023年03月24日
-
-        </i>
-            <!-- 显示每篇博客阅读量, id 将作为查询条件 -->
-                <span id=/2023/03/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/ class="leancloud-visitors" data-flag-title=论文笔记>
-                    <span class="post-meta-divider">|</span>
-                    <span class="post-meta-item-text">阅读量 </span>
-                    <span class="leancloud-visitors-count"></span>
-                </span>
-                &#x1F601
-        </span>
-
     </div>
 
-    <div class="post-content">论文笔记
 
-题目:
-
-Age-Invariant Training for End-to-End Child Speech Recognition using Adversarial Multi-Task Learning
-
-论文主要研究目的:
-
-1.我们提出了一个基于对抗性多任务学习的端到端语音识别系统声学模型...</div>
-
-    <p class="readmore"><a href="/2023/03/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">阅读更多</a></p>
-
-</div>
-
-<div class="post">
-
-    <h2 class="post-title">
-        <a href="/2018/08/28/Hello-world!/">
-            
-            Hello world!
-            
-        </a>
-    </h2>
-
-    <div class="post-meta">
-        <span>
-        <i class="icon-post-date"> 2018年08月28日
-
-        </i>
-            <!-- 显示每篇博客阅读量, id 将作为查询条件 -->
-                <span id=/2018/08/28/Hello-world!/ class="leancloud-visitors" data-flag-title=Hello world!>
-                    <span class="post-meta-divider">|</span>
-                    <span class="post-meta-item-text">阅读量 </span>
-                    <span class="leancloud-visitors-count"></span>
-                </span>
-                &#x1F601
-        </span>
-
+    <div class="post-nav">
+        
+        <a href="/2018/08/28/Hello-world!/" class="pre"><i class="icon-post-pre"> Hello world!</i></a>
+         
+        <a href="/2023/03/28/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/" class="next">高斯混合模型详解 <i
+                class="icon-post-next"></i></a>
+        
     </div>
 
-    <div class="post-content">Hello there!
 
-This is my first blog on my blog site.
+    <!--valine comment function-->
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 
-That’s all.
+    <p><br/>既已览卷至此，何不品评一二：</p>
+    <div id="valine_comment" class="fb_comments_container"></div>
+    <script>
+        var notify = 'false' === true;
+        var verify = 'false.>' === true;
+        var visitor = 'true.>' === true;
 
-def print_hi(name):
-   print("Hi, " + name)
-print_hi("I'm oukohou")
+        new Valine({
+            av: AV,
+            el: '#valine_comment',
+            notify: notify,
+            verify: verify,
+            // smiles_url: '/smiles',
+            visitor: true,
+            app_id: 'K1rbn2Oo0YMM04VuzdLS7Nzz-gzGzoHsz',
+            app_key: 'AAsHbwVm8ofKFJ6ghGqqrXSU',
+            placeholder: 'say something~~\n - 昵称 为你所要显示的评论的ID；\n - 邮箱 只有后台可见，仅供讨论过程中是否需要交流邮件而设置，请放心填写;\n - 网址 为你的评论的昵称的超链接。\n当然，以上都可以不写，评论依然会显示……',
+            avatar: 'retro',
+        });
+    </script>
 
-regards.
-oukohou.
 
-</div>
+</article>
 
-    <p class="readmore"><a href="/2018/08/28/Hello-world!/">阅读更多</a></p>
-
-</div>
-
-
-<!--初始化Valine-->
-<script>
-    var notify = 'false' === true;
-    var verify = 'false.>' === true;
-    var visitor = 'true.>' === true;
-
-    new Valine({
-        av: AV,
-        el: '#valine_comment',
-        notify: notify,
-        verify: verify,
-        // smiles_url: '/smiles',
-        visitor: true,
-        app_id: 'K1rbn2Oo0YMM04VuzdLS7Nzz-gzGzoHsz',
-        app_key: 'AAsHbwVm8ofKFJ6ghGqqrXSU',
-        placeholder: 'say something~~\n - 昵称 为你所要显示的评论的ID；\n - 邮箱 只有后台可见，仅供讨论过程中是否需要交流邮件而设置，请放心填写;\n - 网址 为你的评论的昵称的超链接。\n当然，以上都可以不写，评论依然会显示……',
-        avatar: 'retro',
-    });
-</script>
-
-<div class="page-navigator">
-    
-    <span class="page-number">第 1/1 页</span>
-    
-</div>
-
-<!--&lt;!&ndash;use clustrMaps&ndash;&gt;-->
-<!--<script type="text/javascript" id="clstr_globe"-->
-<!--        src="//cdn.clustrmaps.com/globe.js?d=AjthYW1xsC160mPRvz36bECA0Oi2v43aj1tyCOkL_Cc"-->
-<!--&gt;-->
-<!--        // crossorigin="anonymous"-->
-<!--</script>-->
-<!--<script type='text/javascript' id='clustrmaps'-->
-        <!--src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=3000&t=n&d=AjthYW1xsC160mPRvz36bECA0Oi2v43aj1tyCOkL_Cc'>-->
-
-<!--</script>-->
-<!--<a href='https://clustrmaps.com/site/1b6rd'  title='Visit tracker'>-->
-    <!--<img src='//clustrmaps.com/map_v2.png?cl=ffffff&w=3000&t=n&d=AjthYW1xsC160mPRvz36bECA0Oi2v43aj1tyCOkL_Cc' width="100%"/>-->
-<!--</a>-->
-<!--<a href="https://clustrmaps.com/site/1b6rd" title="Visit tracker">-->
-<!--<img src="//www.clustrmaps.com/map_v2.png?d=AjthYW1xsC160mPRvz36bECA0Oi2v43aj1tyCOkL_Cc&cl=ffffff" width="100%"/>-->
-<!--</a>-->
             </div>
         </div>
 

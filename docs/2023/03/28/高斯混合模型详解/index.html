@@ -59,7 +59,7 @@ Yet no award for you……
     <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
 
-    <title>mikufans | 摸鱼小能手</title>
+    <title>高斯混合模型详解 | 摸鱼小能手</title>
 
     <!--live2d function-->
     <script src="/assets/live2dw/lib/L2Dwidget.min.js"></script>
@@ -79,7 +79,7 @@ Yet no award for you……
     <meta name="keywords"
           content="mikufans">
     <meta name="description"
-          content="在读研究生,研究摸鱼,摸鱼,摸鱼.">
+          content="高斯混合模型">
     <meta name="baidu-site-verification" content="fjE6fa4d3J"/>
     <meta name="author" content="mikufans">
 
@@ -132,7 +132,7 @@ Yet no award for you……
 <div class="body_container">
     <div id="header">
         <div class="site-name">
-            <h1 class="hidden">mikufans</h1>
+            <h1 class="hidden">高斯混合模型详解</h1>
             <a id="logo" href="/.">mikufans</a>
             <p class="description">摸鱼小能手，幸会。</p>
         </div>
@@ -170,175 +170,174 @@ Yet no award for you……
     <div id="layout" class="pure-g">
         <div class="pure-u-1 pure-u-md-3-4">
             <div class="content_container">
-                <!--valine comment function-->
-<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+                <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-
-
-<div class="post">
-
-    <h2 class="post-title">
-        <a href="/2023/03/28/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">高斯混合模型详解</h1>
+        <p class="post-meta">
+            <time datetime="2023-03-28T00:00:00+08:00" itemprop="datePublished">
+                <i class="icon-post-date">Mar 28, 2023</i>
+            </time>
+             |
+            <span class="post-category">
+            <i class="icon-post-category">
             
-            高斯混合模型详解
+                <a href="/category/#笔记">笔记</a>
             
-        </a>
-    </h2>
-
-    <div class="post-meta">
-        <span>
-        <i class="icon-post-date"> 2023年03月28日
-
-        </i>
-            <!-- 显示每篇博客阅读量, id 将作为查询条件 -->
-                <span id=/2023/03/28/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/ class="leancloud-visitors" data-flag-title=高斯混合模型详解>
-                    <span class="post-meta-divider">|</span>
-                    <span class="post-meta-item-text">阅读量 </span>
-                    <span class="leancloud-visitors-count"></span>
-                </span>
-                &#x1F601
+            </i>
+        </span>   |
+            <span class="post-tag">
+            <i class="icon-post-tag">
+            
+                <a href="/tags/#notes">notes</a>
+            
+            </i>
         </span>
+
+
+            <!-- 阅读量统计， id 将作为查询条件 -->
+            <span id=/2023/03/28/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/ class="leancloud-visitors" data-flag-title=高斯混合模型详解>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-text">阅读量 </span>
+                <span class="leancloud-visitors-count"></span>
+            </span>
+        </p>
+
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+        <h1 id="高斯混合模型">高斯混合模型</h1>
+
+<p>当我们面对一个复杂的数据集时，我们可能需要使用一种能够描述这些数据集中不同分布的模型。高斯混合模型（Gaussian Mixture Model，GMM）就是一种流行的用于建模多个高斯分布混合的概率模型。在本文中，我们将学习高斯混合模型的原理、如何使用 EM 算法进行参数估计，以及如何使用 Python 中的 Scikit-learn 库实现高斯混合模型。</p>
+
+<h2 id="高斯混合模型原理">高斯混合模型原理</h2>
+
+<p>高斯混合模型是一种概率模型，用于描述由多个高斯分布混合而成的数据分布。我们可以用以下公式来表示一个高斯混合模型：
+\(p(x)=\sum^K_{k=1}\pi_k\mathcal{N}(x|\mu_k,\Sigma_k)\)
+其中 $x$ 表示数据点，$K$ 表示高斯分布的数量，$\pi_k$ 表示第 $k$ 个高斯分布的权重，$\mu_k$ 和 $\Sigma_k$ 分别表示第 $k$ 个高斯分布的均值和协方差矩阵，$\mathcal{N}(x|\mu_k,\Sigma_k)$ 表示以 $\mu_k$ 为均值，$\Sigma_k$ 为协方差矩阵的高斯分布的概率密度函数。</p>
+
+<p>可以看出，高斯混合模型将数据分布建模为多个高斯分布的混合。每个高斯分布都由其均值和协方差矩阵来确定。模型的参数包括每个高斯分布的权重和每个高斯分布的均值和协方差矩阵。</p>
+
+<h2 id="使用-em-算法进行参数估计">使用 EM 算法进行参数估计</h2>
+
+<p>如何确定高斯混合模型中每个高斯分布的参数呢？这个问题可以通过使用 EM 算法来解决。EM 算法是一种迭代算法，它用于在含有隐变量的概率模型中进行参数估计。高斯混合模型中的隐变量是每个数据点属于哪个高斯分布。</p>
+
+<p>EM 算法包括两个步骤：E 步骤和 M 步骤。在 E 步骤中，我们计算每个数据点属于每个高斯分布的概率。在 M 步骤中，我们使用这些概率来更新高斯分布的参数。重复执行这两个步骤，直到模型参数收敛。</p>
+
+<p>具体地，我们可以按照以下步骤来实现高斯混合模型的 EM 算法：</p>
+
+<ol>
+  <li>
+    <p>初始化每个高斯分布的权重 $\pi_k$、</p>
+  </li>
+  <li>
+    <p>均值 $\mu_k$ 和协方差矩阵 $\Sigma_k$。</p>
+
+    <p>在 E 步骤中，对于每个数据点 $x_i$，计算其属于每个高斯分布的后验概率 $w_{ik}$，即：
+\(w_{i k}=\frac{\pi_{k} \mathcal{N}\left(x_{i} \mid \mu_{k}, \Sigma_{k}\right)}{\sum_{j=1}^{K} \pi_{j} \mathcal{N}\left(x_{i} \mid \mu_{j}, \Sigma_{j}\right)}\)
+其中 $w_{ik}$ 表示数据点 $x_i$ 属于第 $k$ 个高斯分布的后验概率。</p>
+
+    <p>在 M 步骤中，对于每个高斯分布，更新其权重、均值和协方差矩阵：
+\(\pi_k=\frac{1}{N}\sum_{i=1}^{N}w_{ik}\\
+u_k=\frac{\sum_{i=1}^Nw_{ik}x_i}{\sum^N_{i=1}w_{ik}}\\
+\Sigma_k= \frac{\sum^N_{i=1}w_{ik}(x_i-u_k)(x_i-u_k)^T}{\sum^N_{i=1}w_{ik}}\)</p>
+  </li>
+</ol>
+
+<p>其中 $N$ 表示数据点的数量，$\pi_k$ 表示第 $k$ 个高斯分布的权重，$\mu_k$ 和 $\Sigma_k$ 分别表示第 $k$ 个高斯分布的均值和协方差矩阵。</p>
+
+<p>重复执行 E 步骤和 M 步骤，直到模型参数收敛。</p>
+
+<h2 id="实现高斯混合模型">实现高斯混合模型</h2>
+
+<p>现在我们来使用 Python 中的 Scikit-learn 库来实现高斯混合模型。我们首先需要生成一个带有多个高斯分布的数据集：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="n">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+
+<span class="c1"># 生成带有 3 个高斯分布的数据集
+</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>然后，我们可以使用 Scikit-learn 中的 GaussianMixture 类来拟合高斯混合模型并进行预测：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from sklearn.mixture import GaussianMixture
+
+# 创建 GaussianMixture 对象
+gmm = GaussianMixture(n_components=3, random_state=42)
+
+# 拟合模型并进行预测
+gmm.fit(X)
+y_pred = gmm.predict(X)
+
+</code></pre></div></div>
+
+<p>最后，我们可以可视化模型的结果：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import matplotlib.pyplot as plt
+
+# 绘制数据点
+plt.scatter(X[:, 0], X[:, 1], c=y_pred)
+plt.show()
+
+</code></pre></div></div>
+
+<p>这样就可以得到一个带有不同颜色的数据点的散点图，每种颜色代表一个高斯分布。我们可以看到，高斯混合模型成功地将数据集分成了三个簇。</p>
+
+<h2 id="结论">结论</h2>
+
+<p>高斯混合模型是一种强大的聚类方法，可以识别多个高斯分布并将数据集分成多个簇。在实践中，高斯混合模型通常比传统的 K 均值聚类更具有优势，因为它可以更好地处理非球形、重叠和不均衡的数据集。</p>
+
+<p>在本文中，我们介绍了高斯混合模型的原理和实现方法，并使用 Scikit-learn 库来实现了一个简单的例子。当然，还有许多高级技术和扩展可以应用于高斯混合模型，比如贝叶斯高斯混合模型和变分推断方法。如果你对此感兴趣，可以进一步学习这些内容。</p>
+
+<p>希望本文对你理解高斯混合模型有所帮助！</p>
 
     </div>
 
-    <div class="post-content">高斯混合模型
-
-当我们面对一个复杂的数据集时，我们可能需要使用一种能够描述这些数据集中不同分布的模型。高斯混合模型（Gaussian Mixture Model，GMM）就是一种流行的用于建模多个高斯分布混合的概率模型。在本文中，我们将学习高斯混合模型的原理、如何使用 EM 算法进行参数估计，以及如何使用 Pyt...</div>
-
-    <p class="readmore"><a href="/2023/03/28/%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/">阅读更多</a></p>
-
-</div>
-
-<div class="post">
-
-    <h2 class="post-title">
-        <a href="/2023/03/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
-            
-            论文笔记
-            
+    <div id="donate" >
+        <a href="/donate/" style="text-decoration: none" title="点击直达打赏页面～" >
+            <button>客官~对小店满意的话，<mark>赏个铜板</mark>再走啊🐼</button>
         </a>
-    </h2>
-
-    <div class="post-meta">
-        <span>
-        <i class="icon-post-date"> 2023年03月24日
-
-        </i>
-            <!-- 显示每篇博客阅读量, id 将作为查询条件 -->
-                <span id=/2023/03/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/ class="leancloud-visitors" data-flag-title=论文笔记>
-                    <span class="post-meta-divider">|</span>
-                    <span class="post-meta-item-text">阅读量 </span>
-                    <span class="leancloud-visitors-count"></span>
-                </span>
-                &#x1F601
-        </span>
-
     </div>
 
-    <div class="post-content">论文笔记
 
-题目:
-
-Age-Invariant Training for End-to-End Child Speech Recognition using Adversarial Multi-Task Learning
-
-论文主要研究目的:
-
-1.我们提出了一个基于对抗性多任务学习的端到端语音识别系统声学模型...</div>
-
-    <p class="readmore"><a href="/2023/03/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">阅读更多</a></p>
-
-</div>
-
-<div class="post">
-
-    <h2 class="post-title">
-        <a href="/2018/08/28/Hello-world!/">
-            
-            Hello world!
-            
-        </a>
-    </h2>
-
-    <div class="post-meta">
-        <span>
-        <i class="icon-post-date"> 2018年08月28日
-
-        </i>
-            <!-- 显示每篇博客阅读量, id 将作为查询条件 -->
-                <span id=/2018/08/28/Hello-world!/ class="leancloud-visitors" data-flag-title=Hello world!>
-                    <span class="post-meta-divider">|</span>
-                    <span class="post-meta-item-text">阅读量 </span>
-                    <span class="leancloud-visitors-count"></span>
-                </span>
-                &#x1F601
-        </span>
-
+    <div class="post-nav">
+        
+        <a href="/2023/03/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="pre"><i class="icon-post-pre"> 论文笔记</i></a>
+         
     </div>
 
-    <div class="post-content">Hello there!
 
-This is my first blog on my blog site.
+    <!--valine comment function-->
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 
-That’s all.
+    <p><br/>既已览卷至此，何不品评一二：</p>
+    <div id="valine_comment" class="fb_comments_container"></div>
+    <script>
+        var notify = 'false' === true;
+        var verify = 'false.>' === true;
+        var visitor = 'true.>' === true;
 
-def print_hi(name):
-   print("Hi, " + name)
-print_hi("I'm oukohou")
+        new Valine({
+            av: AV,
+            el: '#valine_comment',
+            notify: notify,
+            verify: verify,
+            // smiles_url: '/smiles',
+            visitor: true,
+            app_id: 'K1rbn2Oo0YMM04VuzdLS7Nzz-gzGzoHsz',
+            app_key: 'AAsHbwVm8ofKFJ6ghGqqrXSU',
+            placeholder: 'say something~~\n - 昵称 为你所要显示的评论的ID；\n - 邮箱 只有后台可见，仅供讨论过程中是否需要交流邮件而设置，请放心填写;\n - 网址 为你的评论的昵称的超链接。\n当然，以上都可以不写，评论依然会显示……',
+            avatar: 'retro',
+        });
+    </script>
 
-regards.
-oukohou.
 
-</div>
+</article>
 
-    <p class="readmore"><a href="/2018/08/28/Hello-world!/">阅读更多</a></p>
-
-</div>
-
-
-<!--初始化Valine-->
-<script>
-    var notify = 'false' === true;
-    var verify = 'false.>' === true;
-    var visitor = 'true.>' === true;
-
-    new Valine({
-        av: AV,
-        el: '#valine_comment',
-        notify: notify,
-        verify: verify,
-        // smiles_url: '/smiles',
-        visitor: true,
-        app_id: 'K1rbn2Oo0YMM04VuzdLS7Nzz-gzGzoHsz',
-        app_key: 'AAsHbwVm8ofKFJ6ghGqqrXSU',
-        placeholder: 'say something~~\n - 昵称 为你所要显示的评论的ID；\n - 邮箱 只有后台可见，仅供讨论过程中是否需要交流邮件而设置，请放心填写;\n - 网址 为你的评论的昵称的超链接。\n当然，以上都可以不写，评论依然会显示……',
-        avatar: 'retro',
-    });
-</script>
-
-<div class="page-navigator">
-    
-    <span class="page-number">第 1/1 页</span>
-    
-</div>
-
-<!--&lt;!&ndash;use clustrMaps&ndash;&gt;-->
-<!--<script type="text/javascript" id="clstr_globe"-->
-<!--        src="//cdn.clustrmaps.com/globe.js?d=AjthYW1xsC160mPRvz36bECA0Oi2v43aj1tyCOkL_Cc"-->
-<!--&gt;-->
-<!--        // crossorigin="anonymous"-->
-<!--</script>-->
-<!--<script type='text/javascript' id='clustrmaps'-->
-        <!--src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=3000&t=n&d=AjthYW1xsC160mPRvz36bECA0Oi2v43aj1tyCOkL_Cc'>-->
-
-<!--</script>-->
-<!--<a href='https://clustrmaps.com/site/1b6rd'  title='Visit tracker'>-->
-    <!--<img src='//clustrmaps.com/map_v2.png?cl=ffffff&w=3000&t=n&d=AjthYW1xsC160mPRvz36bECA0Oi2v43aj1tyCOkL_Cc' width="100%"/>-->
-<!--</a>-->
-<!--<a href="https://clustrmaps.com/site/1b6rd" title="Visit tracker">-->
-<!--<img src="//www.clustrmaps.com/map_v2.png?d=AjthYW1xsC160mPRvz36bECA0Oi2v43aj1tyCOkL_Cc&cl=ffffff" width="100%"/>-->
-<!--</a>-->
             </div>
         </div>
 
